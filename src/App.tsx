@@ -12,10 +12,7 @@ export const App: React.FC = () => {
   const [isResumeOpen, setIsResumeOpen] = useState(false)
 
   return (
-    <div className="min-h-screen bg-[#080a10] text-[#f1f5f9] relative font-sans selection:bg-emerald-500/30 selection:text-emerald-300">
-      {/* Background Cyber-Grid Pattern Overlay */}
-      <div className="fixed inset-0 bg-grid-pattern opacity-60 pointer-events-none z-0" />
-
+    <div className="min-h-screen bg-[#09090b] text-zinc-100 relative font-sans selection:bg-emerald-500/20 selection:text-white">
       {/* Sticky Top Navigation */}
       <Navbar onOpenResume={() => setIsResumeOpen(true)} />
 

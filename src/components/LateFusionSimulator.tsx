@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Sliders, CheckCircle2, AlertTriangle, XCircle, Sparkles, Activity } from 'lucide-react'
+import { CheckCircle2, AlertTriangle, XCircle } from 'lucide-react'
 
 export const LateFusionSimulator: React.FC = () => {
   // Audio confidence (0 - 100)
@@ -28,9 +28,7 @@ export const LateFusionSimulator: React.FC = () => {
   const finalProbability = (0.70 * audioFraction) + (0.30 * visualFraction)
   const finalScorePercent = Math.round(finalProbability * 100)
 
-  // Decision logic:
-  // If finalScore >= 60% -> Buko (Soft Tender Meat)
-  // Else -> Malauhog (Translucent Jelly Meat)
+  // Decision logic
   let decision = ''
   let statusType: 'success' | 'warning' | 'error' = 'success'
   let explanation = ''
@@ -58,44 +56,37 @@ export const LateFusionSimulator: React.FC = () => {
   }
 
   return (
-    <div className="glass-panel rounded-2xl p-6 md:p-8 relative overflow-hidden border border-emerald-500/20 bg-gradient-to-b from-[#111522] to-[#0c0f1a]">
-      {/* Decorative ambient gradient */}
-      <div className="absolute top-0 right-0 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-6 border-b border-white/10">
+    <div className="bg-zinc-900 rounded-xl p-6 md:p-8 border border-zinc-800">
+      <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6 pb-5 border-b border-zinc-800">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 mb-2">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Interactive Architecture Widget</span>
-          </div>
-          <h3 className="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
-            <span>70/30 Acoustic-Dominant Late Fusion Simulator</span>
+          <h3 className="text-lg md:text-xl font-bold font-heading text-zinc-100">
+            70/30 Acoustic-Dominant Late Fusion Simulator
           </h3>
-          <p className="text-sm text-slate-400 mt-1 max-w-2xl">
-            Simulate the exact multimodal inference formula and 3 sensor guardrails designed and tuned by Wayne for edge deployment in the NiyoSense mobile app.
+          <p className="text-xs sm:text-sm text-zinc-400 mt-1 max-w-2xl leading-relaxed">
+            Simulate the multimodal inference formula and three pre-inference sensor guardrails designed for on-device edge deployment in the NiyoSense mobile app.
           </p>
         </div>
 
-        <div className="flex items-center gap-2 bg-[#0a0d15] px-4 py-2.5 rounded-xl border border-white/10 font-mono text-xs text-slate-300">
-          <Activity className="w-4 h-4 text-emerald-400 animate-pulse" />
+        <div className="flex items-center gap-2 bg-zinc-950 px-3 py-1.5 rounded-lg border border-zinc-800 font-mono text-xs text-zinc-400">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
           <span>Latency: &lt;180ms (TFLite INT8)</span>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left: Interactive Controls */}
-        <div className="lg:col-span-7 space-y-6">
+        <div className="lg:col-span-7 space-y-5">
           {/* Slider 1: Acoustic Model */}
-          <div className="space-y-2">
-            <div className="flex justify-between items-center text-sm">
-              <span className="font-semibold text-white flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-cyan-400" />
+          <div className="space-y-1.5">
+            <div className="flex justify-between items-center text-xs sm:text-sm">
+              <span className="font-medium text-zinc-200 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-zinc-400" />
                 Acoustic Knock Model (70% Weight)
               </span>
-              <span className="font-mono text-cyan-400 font-bold">{audioScore}%</span>
+              <span className="font-mono text-zinc-100 font-semibold">{audioScore}%</span>
             </div>
-            <p className="text-xs text-slate-400">
-              Inferred from 128-band Mel-spectrogram of knuckle-knock sound vibration.
+            <p className="text-xs text-zinc-500">
+              Inferred from 128-band Mel-spectrogram of knuckle-knock shell vibrations.
             </p>
             <input
               type="range"
@@ -103,20 +94,20 @@ export const LateFusionSimulator: React.FC = () => {
               max="100"
               value={audioScore}
               onChange={(e) => setAudioScore(Number(e.target.value))}
-              className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400"
+              className="w-full h-1.5 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"
             />
           </div>
 
           {/* Slider 2: Visual Model */}
-          <div className="space-y-2">
-            <div className="flex justify-between items-center text-sm">
-              <span className="font-semibold text-white flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
+          <div className="space-y-1.5">
+            <div className="flex justify-between items-center text-xs sm:text-sm">
+              <span className="font-medium text-zinc-200 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-zinc-500" />
                 Visual Exocarp Model (30% Weight)
               </span>
-              <span className="font-mono text-emerald-400 font-bold">{visualScore}%</span>
+              <span className="font-mono text-zinc-100 font-semibold">{visualScore}%</span>
             </div>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-zinc-500">
               Inferred from camera reticle hue, surface texture, and stem pigmentation.
             </p>
             <input
@@ -125,13 +116,13 @@ export const LateFusionSimulator: React.FC = () => {
               max="100"
               value={visualScore}
               onChange={(e) => setVisualScore(Number(e.target.value))}
-              className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-400"
+              className="w-full h-1.5 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"
             />
           </div>
 
           {/* Pre-Inference Guardrail Toggles */}
-          <div className="pt-3 border-t border-white/10 space-y-3">
-            <span className="text-xs font-mono uppercase tracking-wider text-slate-400 block font-semibold">
+          <div className="pt-3 border-t border-zinc-800 space-y-2.5">
+            <span className="text-xs uppercase tracking-wider text-zinc-500 block font-semibold">
               Pre-Inference Sensor Guardrails (Failsafes)
             </span>
 
@@ -139,38 +130,38 @@ export const LateFusionSimulator: React.FC = () => {
               {/* Gate 1 Toggle */}
               <div
                 onClick={() => setIsCoconutHsvValid(!isCoconutHsvValid)}
-                className={`p-3 rounded-xl border cursor-pointer transition-all ${
+                className={`p-3 rounded-lg border cursor-pointer transition-colors ${
                   isCoconutHsvValid
-                    ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-300'
-                    : 'bg-red-500/10 border-red-500/40 text-red-300'
+                    ? 'bg-zinc-950 border-emerald-500/40 text-emerald-400'
+                    : 'bg-zinc-950 border-red-500/40 text-red-400'
                 }`}
               >
-                <div className="flex items-center justify-between text-xs font-semibold mb-1">
+                <div className="flex items-center justify-between text-xs font-medium mb-1">
                   <span>Gate 1: HSV Color Gate</span>
-                  <span>{isCoconutHsvValid ? 'PASSED' : 'BLOCKED'}</span>
+                  <span className="text-[11px] font-mono">{isCoconutHsvValid ? 'PASSED' : 'BLOCKED'}</span>
                 </div>
-                <div className="text-[11px] text-slate-400 leading-tight">
-                  {isCoconutHsvValid ? 'Valid coconut surface detected' : 'Non-coconut object in frame'}
+                <div className="text-[11px] text-zinc-400 leading-tight">
+                  {isCoconutHsvValid ? 'Valid coconut exocarp surface' : 'Non-coconut target detected'}
                 </div>
               </div>
 
               {/* Gate 2 Strike Counter */}
-              <div className="p-3 rounded-xl border border-white/10 bg-[#0a0d15] flex flex-col justify-between">
-                <div className="flex items-center justify-between text-xs font-semibold text-slate-300 mb-1">
+              <div className="p-3 rounded-lg border border-zinc-800 bg-zinc-950 flex flex-col justify-between">
+                <div className="flex items-center justify-between text-xs font-medium text-zinc-300 mb-1">
                   <span>Gate 2: Knock Cadence</span>
-                  <span className={`font-mono ${passedKnockGate ? 'text-emerald-400' : 'text-amber-400'}`}>
+                  <span className={`text-[11px] font-mono ${passedKnockGate ? 'text-emerald-400' : 'text-amber-400'}`}>
                     {knockCount} Strikes {passedKnockGate ? '(Valid)' : '(Invalid)'}
                   </span>
                 </div>
-                <div className="flex gap-1.5 mt-1">
+                <div className="flex gap-1 mt-1">
                   {[1, 2, 3, 4, 5].map((num) => (
                     <button
                       key={num}
                       onClick={() => setKnockCount(num)}
-                      className={`flex-1 py-1 text-[11px] font-mono rounded-md border transition-all ${
+                      className={`flex-1 py-0.5 text-xs font-mono rounded border transition-colors ${
                         knockCount === num
-                          ? 'bg-emerald-500 text-black font-bold border-emerald-400'
-                          : 'bg-slate-800 text-slate-400 border-white/5 hover:text-white'
+                          ? 'bg-zinc-100 text-zinc-950 font-bold border-zinc-100'
+                          : 'bg-zinc-800 text-zinc-400 border-zinc-700 hover:text-zinc-200'
                       }`}
                     >
                       {num}
@@ -182,27 +173,27 @@ export const LateFusionSimulator: React.FC = () => {
           </div>
         </div>
 
-        {/* Right: Live Mathematical Output & Telemetry */}
-        <div className="lg:col-span-5 flex flex-col justify-between bg-[#090c14] border border-white/10 rounded-2xl p-5">
+        {/* Right: Mathematical Output & Result */}
+        <div className="lg:col-span-5 flex flex-col justify-between bg-zinc-950 border border-zinc-800 rounded-xl p-4 sm:p-5">
           <div>
-            <div className="flex items-center justify-between text-xs font-mono text-slate-400 pb-3 border-b border-white/10">
+            <div className="flex items-center justify-between text-xs text-zinc-500 pb-2.5 border-b border-zinc-800 font-mono">
               <span>MULTIMODAL OUTPUT</span>
-              <span className="text-emerald-400">EDGE INFERENCE</span>
+              <span className="text-zinc-400">EDGE INFERENCE</span>
             </div>
 
             {/* Math Formula Display */}
-            <div className="my-4 p-3 bg-black/40 rounded-xl font-mono text-xs text-slate-300 space-y-1.5 border border-white/5">
-              <div className="text-slate-500 text-[11px]">// Late Fusion Calculation</div>
+            <div className="my-3 p-3 bg-zinc-900 rounded-lg font-mono text-xs text-zinc-300 space-y-1.5 border border-zinc-800">
+              <div className="text-zinc-500 text-[11px]">// Late Fusion Calculation</div>
               <div>
-                P_final = (0.70 × <span className="text-cyan-400">{audioFraction.toFixed(2)}</span>) + (0.30 × <span className="text-emerald-400">{visualFraction.toFixed(2)}</span>)
+                P_final = (0.70 × <span className="text-zinc-100">{audioFraction.toFixed(2)}</span>) + (0.30 × <span className="text-zinc-100">{visualFraction.toFixed(2)}</span>)
               </div>
-              <div className="text-emerald-400 font-bold pt-1 border-t border-white/5 flex justify-between">
+              <div className="text-zinc-100 font-semibold pt-1 border-t border-zinc-800 flex justify-between">
                 <span>Weighted Confidence:</span>
-                <span>{finalScorePercent}%</span>
+                <span className="text-emerald-400">{finalScorePercent}%</span>
               </div>
-              <div className="text-[11px] text-slate-400 flex justify-between">
+              <div className="text-[11px] text-zinc-400 flex justify-between">
                 <span>Model Divergence:</span>
-                <span className={isConflictVeto ? 'text-amber-400 font-bold' : 'text-slate-400'}>
+                <span className={isConflictVeto ? 'text-amber-400 font-medium' : 'text-zinc-400'}>
                   {scoreDiffPercent}% {isConflictVeto ? '(Conflict Veto Active)' : '(<40% OK)'}
                 </span>
               </div>
@@ -210,27 +201,27 @@ export const LateFusionSimulator: React.FC = () => {
 
             {/* Result Badge */}
             <div
-              className={`p-4 rounded-xl border transition-all ${
+              className={`p-3.5 rounded-lg border transition-colors ${
                 statusType === 'success'
-                  ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-400'
+                  ? 'bg-zinc-900 border-emerald-500/40 text-emerald-400'
                   : statusType === 'warning'
-                  ? 'bg-amber-500/10 border-amber-500/40 text-amber-400'
-                  : 'bg-red-500/10 border-red-500/40 text-red-400'
+                  ? 'bg-zinc-900 border-amber-500/40 text-amber-400'
+                  : 'bg-zinc-900 border-red-500/40 text-red-400'
               }`}
             >
-              <div className="flex items-center gap-2 font-bold text-sm mb-1">
-                {statusType === 'success' && <CheckCircle2 className="w-5 h-5 shrink-0" />}
-                {statusType === 'warning' && <AlertTriangle className="w-5 h-5 shrink-0" />}
-                {statusType === 'error' && <XCircle className="w-5 h-5 shrink-0" />}
+              <div className="flex items-center gap-2 font-semibold text-xs sm:text-sm mb-1">
+                {statusType === 'success' && <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-400" />}
+                {statusType === 'warning' && <AlertTriangle className="w-4 h-4 shrink-0 text-amber-400" />}
+                {statusType === 'error' && <XCircle className="w-4 h-4 shrink-0 text-red-400" />}
                 <span>{decision}</span>
               </div>
-              <p className="text-xs text-slate-300 leading-relaxed">{explanation}</p>
+              <p className="text-xs text-zinc-300 leading-relaxed">{explanation}</p>
             </div>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-white/10 text-[11px] text-slate-500 flex justify-between items-center">
-            <span>Model Version: YOLOv8-cls INT8</span>
-            <span className="text-slate-400">Edge Device: Android / Flutter</span>
+          <div className="mt-3 pt-2.5 border-t border-zinc-800 text-[11px] text-zinc-500 flex justify-between items-center">
+            <span>YOLOv8-cls INT8</span>
+            <span>Android / Flutter Pure-Dart</span>
           </div>
         </div>
       </div>
